@@ -1,0 +1,133 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+
+    background: #ffffff;
+    position: relative;
+}
+
+/* Pink gradient blobs */
+
+body::before,
+body::after {
+    content: "";
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    filter: blur(120px);
+    z-index: 0;
+}
+
+/* Top Left Pink Glow */
+body::before {
+    top: -150px;
+    left: -150px;
+    background: radial-gradient(circle, #ffb3d9 0%, #ffd6e8 60%, transparent 80%);
+}
+
+/* Bottom Right Pink Glow */
+body::after {
+    bottom: -150px;
+    right: -150px;
+    background: radial-gradient(circle, #ffcce6 0%, #ffe6f2 60%, transparent 80%);
+}
+
+/* Extra blob */
+body::marker {
+    display: none;
+}
+
+/* Make card above background */
+.register-card {
+    position: relative;
+    z-index: 2;
+}
+
+/* Center wrapper */
+
+.center-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+/* Register Card */
+
+.register-card {
+    background: white;
+    padding: 60px 50px;
+    width: 420px;
+    border-radius: 30px;
+    text-align: center;
+
+    /* Softer shadow */
+    box-shadow: 0 20px 50px rgba(255, 158, 199, 0.25);
+    transition: 0.3s ease;
+}
+
+.register-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Title */
+
+.register-card h1 {
+    font-size: 28px;
+    margin-bottom: 15px;
+    color: #ff7eb6; /* softer pink */
+}
+
+/* Subtitle */
+
+.register-card p {
+    font-size: 16px;
+    margin-bottom: 35px;
+    color: #777;
+}
+
+/* Google Button */
+
+.google-btn {
+    width: 100%;
+    padding: 15px;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    /* Softer pink gradient */
+    background: linear-gradient(135deg, #ffb3d9, #ffd6e8);
+    color: #b30059;
+
+    transition: 0.3s ease;
+}
+
+.google-btn img {
+    width: 22px;
+    height: 22px;
+}
+
+.google-btn:hover {
+    transform: scale(1.04);
+    box-shadow: 0 10px 25px rgba(255, 158, 199, 0.35);
+}

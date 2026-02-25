@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>CodeSwipe</title>
+    <link rel="stylesheet" href="styles/landingPage.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Fira+Code:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="navbar">
+      <div class="logo">CodeSwipe</div>
+      <div class="nav-buttons">
+        <!-- <a href="login.html" class="btn-outline">Login</a> -->
+        <a href="loginPage.html" class="btn-primary">Get Started</a>
+      </div>
+    </header>
+
+    <section class="hero">
+      <!-- Floating Code Background -->
+      <div class="code-bg">
+        <pre>
+function swipeProject(user, project) {
+    if(user.likes(project)) {
+        match(user, project.owner);
+    }
+}
+        </pre>
+
+        <pre>
+const skills = ["React", "Java", "AI"];
+
+skills.forEach(skill => {
+    generateProject(skill);
+});
+        </pre>
+      </div>
+
+      <div class="hero-left">
+        <h1>Swipe. Match. Build.</h1>
+
+        <p>
+          Discover coding projects, connect with student developers, and build
+          real-world experience together.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="loginPage.html" class="btn-primary big">Join Now</a>
+          <!-- <a href="login.html" class="btn-outline big">Login</a> -->
+        </div>
+
+        <!-- Terminal Mock -->
+        <!-- <div class="terminal">
+          <div class="terminal-header">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+          </div>
+          <div class="terminal-body">
+            <code>
+              $ npm run build<br />
+              ✔ Project matched successfully 💗<br />
+              ✔ Collaboration started 🚀
+            </code>
+          </div>
+        </div> -->
+      </div>
+
+      <!-- <div class="hero-right">
+        <div class="mock-card">
+          <div class="mock-profile">
+            <div class="mock-avatar"></div>
+            <div>
+              <h3>AI Study Planner</h3>
+              <span>Intermediate</span>
+            </div>
+          </div>
+
+          <p>
+            Build a web app that generates personalized study schedules using
+            AI.
+          </p>
+
+          <div class="mock-tags">
+            <span>React</span>
+            <span>Spring Boot</span>
+            <span>AI</span>
+          </div>
+        </div>
+      </div> -->
+    </section>
+    <!-- How It Works -->
+    <section class="steps">
+      <h2>How It Works</h2>
+
+      <div class="step-container">
+        <div class="step-card">
+          <div class="step-icon">📂</div>
+          <h3>Browse Projects</h3>
+          <p>Explore coding projects tailored to your skills.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-icon">💗</div>
+          <h3>Swipe Right</h3>
+          <p>Show interest in projects you want to join.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-icon">🚀</div>
+          <h3>Start Building</h3>
+          <p>Connect and collaborate with other students.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+      <h2>Ready to build something amazing?</h2>
+      <a href="register.html" class="btn-primary big">Create Your Account</a>
+    </section>
+  </body>
+</html>
