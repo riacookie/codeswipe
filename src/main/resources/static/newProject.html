@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Create Project - CodeSwipe</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
+    <link rel="stylesheet" href="styles/newProject.css" />
+  </head>
+  <body>
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+      <div class="nav-top">
+        <a href="homePage.html" class="nav-item">
+          <i class="fa-solid fa-house"></i>
+          <span>Home</span>
+        </a>
+
+        <a href="interested.html" class="nav-item">
+          <i class="fa-solid fa-heart"></i>
+          <span>Interested</span>
+        </a>
+
+        <a href="myProjects.html" class="nav-item active">
+          <i class="fa-solid fa-folder-open"></i>
+          <span>My Projects</span>
+        </a>
+
+        <a href="profile.html" class="nav-item">
+          <i class="fa-solid fa-user"></i>
+          <span>Profile</span>
+        </a>
+      </div>
+
+      <div class="nav-bottom">
+        <a href="landingPage.html" class="nav-item logout">
+          <i class="fa-solid fa-right-from-bracket"></i>
+          <span>Logout</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="logo">CodeSwipe</div>
+
+    <!-- MAIN CONTENT -->
+    <div class="main">
+      <div class="form-container">
+        <h1>Create New Project</h1>
+
+        <form>
+          <div class="form-group">
+            <label>Project Title</label>
+            <input type="text" placeholder="Enter project title" />
+          </div>
+
+          <div class="form-group">
+            <label>Description</label>
+            <textarea
+              rows="4"
+              placeholder="Describe your project..."
+            ></textarea>
+          </div>
+
+          <div class="form-group">
+            <label>Difficulty Level</label>
+            <select>
+              <option>Beginner</option>
+              <option>Intermediate</option>
+              <option>Advanced</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Required Skills (comma separated)</label>
+            <input type="text" placeholder="Java, Spring Boot, MySQL" />
+          </div>
+
+          <div class="form-group">
+            <label>Contact Info</label>
+            <input type="text" placeholder="Email or social link" />
+          </div>
+
+          <button type="button" class="publish-btn" onclick="openModal()">
+            Publish Project
+          </button>
+        </form>
+      </div>
+    </div>
+    <!-- CONFIRM MODAL -->
+    <div class="confirm-modal" id="confirmModal">
+      <div class="confirm-box">
+        <h3>Publish Project?</h3>
+        <p>Are you sure you want to publish this project?</p>
+
+        <div class="confirm-actions">
+          <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+          <button class="btn-confirm" onclick="confirmPublish()">
+            Yes, Publish
+          </button>
+        </div>
+      </div>
+    </div>
+    <script>
+      function openModal() {
+        document.getElementById("confirmModal").classList.add("active");
+      }
+
+      function closeModal() {
+        document.getElementById("confirmModal").classList.remove("active");
+      }
+
+      function confirmPublish() {
+        closeModal();
+
+        // Nếu có form:
+        document.getElementById("projectForm").submit();
+
+        // Nếu chưa có backend thì bạn có thể thay bằng:
+        // alert("Project Published Successfully!");
+      }
+    </script>
+  </body>
+</html>

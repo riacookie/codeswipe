@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 * {
     margin: 0;
     padding: 0;
@@ -67,12 +68,15 @@ body {
 
 .logo {
     position: absolute;
-    top: 30px;
-    right: 50px;
-    font-size: 28px;
-    font-weight: bold;
-    color: #ff4b91;
+    top: 25px;
+    right: 40px;
+    font-weight: 700;
+    font-size: 24px;
+    color: #ff4f9a;
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: 0.5px;
 }
+
 
 /* MAIN */
 .main {
