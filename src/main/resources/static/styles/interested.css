@@ -93,8 +93,10 @@ body {
     top: 25px;
     right: 40px;
     font-weight: 700;
-    font-size: 22px;
+    font-size: 24px;
     color: #ff4f9a;
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: 0.5px;
 }
 
 /* ================= MAIN ================= */

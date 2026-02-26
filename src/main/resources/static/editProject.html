@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Edit Project - CodeSwipe</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+rel="stylesheet">
+
+<link rel="stylesheet" href="styles/editProject.css">
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+
+    <div>
+        
+
+        <div class="nav-top">
+            <a href="homePage.html" class="nav-item">
+                <i class="fa-solid fa-house"></i>
+                <span>Home</span>
+            </a>
+
+            <a href="interested.html" class="nav-item">
+                <i class="fa-solid fa-heart"></i>
+                <span>Interested</span>
+            </a>
+
+            <a href="myProjects.html" class="nav-item">
+                <i class="fa-solid fa-folder-open"></i>
+                <span>My Projects</span>
+            </a>
+
+            <a href="profile.html" class="nav-item">
+                <i class="fa-solid fa-user"></i>
+                <span>Profile</span>
+            </a>
+        </div>
+    </div>
+
+    <div class="nav-bottom">
+        <a href="loginPage.html" class="nav-item">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <span>Logout</span>
+        </a>
+    </div>
+
+</div>
+<div class="logo">CodeSwipe</div>
+<!-- MAIN -->
+<div class="main">
+    <div class="form-card">
+
+        <h2>Edit Project</h2>
+
+        <div class="form-group">
+            <label>Project Title</label>
+            <input type="text" value="AI Study Planner">
+        </div>
+
+        <div class="form-group">
+            <label>Description</label>
+            <textarea>Build an AI-powered web application that generates personalized study schedules.</textarea>
+        </div>
+
+        <div class="form-group">
+            <label>Required Skills (comma separated)</label>
+            <input type="text" value="React, Spring Boot, MySQL">
+        </div>
+
+        <div class="form-group">
+            <label>Difficulty Level</label>
+            <select>
+                <option>Beginner</option>
+                <option selected>Intermediate</option>
+                <option>Advanced</option>
+            </select>
+        </div>
+
+        <div class="button-group">
+            <button class="save-btn" onclick="openConfirm()">Save Changes</button>
+            <button class="cancel-btn"
+                onclick="window.location.href='myProjects.html'">
+                Cancel
+            </button>
+        </div>
+
+    </div>
+</div>
+
+<!-- CONFIRM MODAL -->
+<div class="confirm-modal" id="confirmModal">
+    <div class="confirm-box">
+        <h3>Save changes to this project?</h3>
+
+        <div class="confirm-actions">
+            <button class="btn-cancel" onclick="closeConfirm()">Cancel</button>
+            <button class="btn-confirm" onclick="saveProject()">Yes, Save</button>
+        </div>
+    </div>
+</div>
+
+<script>
+function openConfirm() {
+    document.getElementById("confirmModal").classList.add("active");
+}
+
+function closeConfirm() {
+    document.getElementById("confirmModal").classList.remove("active");
+}
+
+function saveProject() {
+    closeConfirm();
+    alert("Project updated successfully!");
+    window.location.href = "myProjects.html";
+}
+</script>
+
+</body>
+</html>

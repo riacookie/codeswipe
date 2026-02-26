@@ -68,25 +68,49 @@
           </div>
 
           <div class="card-actions">
-            <button class="edit-btn">
+            <a href="editProject.html" class="edit-btn">
               <i class="fa-solid fa-pen"></i>
-            </button>
-            <button class="delete-btn" onclick="confirmDelete('project1')">
+            </a>
+            <button class="delete-btn" onclick="openDeleteModal(this)">
               <i class="fa-solid fa-trash"></i>
             </button>
           </div>
         </div>
       </div>
     </div>
-    <script>
-      function confirmDelete(projectId) {
-        const confirmAction = confirm(
-          "Are you sure you want to delete this project?",
-        );
+    <!-- DELETE CONFIRM MODAL -->
+    <div class="confirm-modal" id="deleteModal">
+      <div class="confirm-box">
+        <h3>Delete Project?</h3>
+        <p>This action cannot be undone.</p>
 
-        if (confirmAction) {
-          document.getElementById(projectId).remove();
+        <div class="confirm-actions">
+          <button class="btn-cancel" onclick="closeDeleteModal()">
+            Cancel
+          </button>
+          <button class="btn-confirm" onclick="confirmDelete()">
+            Yes, Delete
+          </button>
+        </div>
+      </div>
+    </div>
+    <script>
+      let projectToDelete = null;
+
+      function openDeleteModal(button) {
+        projectToDelete = button.closest(".project-item");
+        document.getElementById("deleteModal").classList.add("active");
+      }
+
+      function closeDeleteModal() {
+        document.getElementById("deleteModal").classList.remove("active");
+      }
+
+      function confirmDelete() {
+        if (projectToDelete) {
+          projectToDelete.remove();
         }
+        closeDeleteModal();
       }
     </script>
   </body>
