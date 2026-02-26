@@ -5,8 +5,8 @@ const firebaseConfig = {
     projectId: "codeswipe-24f7e",
     storageBucket: "codeswipe-24f7e.firebasestorage.app",
     messagingSenderId: "40195048342",
-    appId: "1:40195048342:web:1b034e974ea9d81d8bd3b7",
-    measurementId: "G-N45RVBYBWH"
+    appId: "1:40195048342:web:29d4812bd931b3c18bd3b7",
+    measurementId: "G-1LPGCH2PR0"
 };
 
 // 2. Initialize Firebase
