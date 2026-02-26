@@ -39,6 +39,7 @@ body {
     justify-content: center;
     cursor: pointer;
     color: white;
+    text-decoration: none;
 }
 
 .nav-item i {
@@ -69,6 +70,10 @@ body {
 .nav-item:hover span {
     opacity: 1;
     transform: translateX(0);
+}
+
+#now i{
+    color: black;
 }
 
 /* Logout */
@@ -182,13 +187,7 @@ body {
     color: #00a86b;
 }
 
-/* PAGE HEADER */
-.page-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 40px;
-}
+
 
 /* ADD PROJECT BUTTON */
 .add-project-btn {

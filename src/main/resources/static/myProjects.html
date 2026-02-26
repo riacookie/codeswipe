@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>My Projects - CodeSwipe</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
+    <link rel="stylesheet" href="styles/myProjects.css" />
+  </head>
+  <body>
+    <div class="sidebar">
+      <div class="nav-top">
+        <a href="homePage.html" class="nav-item">
+          <i class="fa-solid fa-house"></i>
+          <span>Home</span>
+        </a>
+
+        <a href="interested.html" class="nav-item">
+          <i class="fa-solid fa-heart"></i>
+          <span>Interested</span>
+        </a>
+
+        <a href="myProjects.html" class="nav-item active">
+          <i class="fa-solid fa-folder-open"></i>
+          <span>My Projects</span>
+        </a>
+
+        <a href="profile.html" class="nav-item">
+          <i class="fa-solid fa-user"></i>
+          <span>Profile</span>
+        </a>
+      </div>
+
+      <div class="nav-bottom">
+        <a href="loginPage.html" class="nav-item logout">
+          <i class="fa-solid fa-right-from-bracket"></i>
+          <span>Logout</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="logo">CodeSwipe</div>
+
+    <div class="main">
+      <div class="page-header">
+        <h1>My Projects</h1>
+
+        <a href="newProject.html" class="create-btn">
+          <i class="fa-solid fa-plus"></i> Create Project
+        </a>
+      </div>
+
+      <div class="projects-grid">
+        <!-- Example Project Card -->
+        <div class="my-project-card" id="project1">
+          <h3>AI Study Planner</h3>
+          <p class="description">
+            A smart study scheduling web app powered by AI.
+          </p>
+
+          <div class="meta">
+            <span><strong>Difficulty:</strong> Intermediate</span>
+            <span><strong>Skills:</strong> Java, Spring Boot</span>
+          </div>
+
+          <div class="card-actions">
+            <button class="edit-btn">
+              <i class="fa-solid fa-pen"></i>
+            </button>
+            <button class="delete-btn" onclick="confirmDelete('project1')">
+              <i class="fa-solid fa-trash"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      function confirmDelete(projectId) {
+        const confirmAction = confirm(
+          "Are you sure you want to delete this project?",
+        );
+
+        if (confirmAction) {
+          document.getElementById(projectId).remove();
+        }
+      }
+    </script>
+  </body>
+</html>

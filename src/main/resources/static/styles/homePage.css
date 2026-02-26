@@ -37,6 +37,7 @@ body {
     display: flex;
     justify-content: center;
     cursor: pointer;
+    text-decoration: none;
     color: white;
 }
 
@@ -67,6 +68,10 @@ body {
     transform: translateX(0);
 }
 
+#now i {
+    color: black;
+}
+
 .logo {
     position: absolute;
     top: 30px;
@@ -93,8 +98,8 @@ body {
 /* CARD */
 .swipe-container {
     position: relative;
-    width: 800px;
-    height: 650px;
+    width: 700px;
+    height: 500px;
 }
 
 .project-card {
@@ -140,13 +145,6 @@ body {
     color: #777;
 }
 
-/* IMAGE */
-.polaroid-image {
-    flex: 1;
-    background: linear-gradient(135deg, #ffecd2, #fcb69f);
-    border-radius: 12px;
-    margin-bottom: 20px;
-}
 
 /* CONTENT */
 .polaroid-caption p {
@@ -243,4 +241,55 @@ body {
     margin-left: 6px;
     font-weight: bold;
     color: #f39c12;
+}
+
+.card-section {
+    margin-bottom: 18px;
+}
+
+.card-section strong {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 14px;
+    color: #ff4b91;
+}
+
+.card-section p {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.5;
+}
+
+.difficulty-text {
+    font-weight: 600;
+    color: #f39c12;
+}
+
+/* Divider */
+.card-divider {
+    border: none;
+    height: 1px;
+    background: #eee;
+    margin: 20px 0;
+}
+
+/* Contact Section */
+.contact-section strong {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #ff4b91;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 13px;
+    color: #666;
+}
+
+.contact-info i {
+    margin-right: 6px;
+    color: #ff4b91;
 }

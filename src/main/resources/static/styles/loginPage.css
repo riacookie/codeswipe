@@ -7,103 +7,101 @@
 body {
     font-family: 'Poppins', sans-serif;
     height: 100vh;
-    margin: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
-
-    background: #ffffff;
+    background: #fff5fa; /* same as home page */
     position: relative;
 }
 
-/* Pink gradient blobs */
+/* ===== BACKGROUND BLOBS (Pink + Red Theme) ===== */
 
 body::before,
 body::after {
     content: "";
     position: absolute;
-    width: 600px;
-    height: 600px;
+    width: 650px;
+    height: 650px;
     border-radius: 50%;
-    filter: blur(120px);
+    filter: blur(130px);
     z-index: 0;
 }
 
-/* Top Left Pink Glow */
+/* Top Left – Pink Glow */
 body::before {
-    top: -150px;
-    left: -150px;
-    background: radial-gradient(circle, #ffb3d9 0%, #ffd6e8 60%, transparent 80%);
+    top: -200px;
+    left: -200px;
+    background: radial-gradient(
+        circle,
+        rgba(255, 75, 145, 0.6) 0%,
+        rgba(255, 143, 177, 0.4) 40%,
+        transparent 75%
+    );
 }
 
-/* Bottom Right Pink Glow */
+/* Bottom Right – Soft Red Glow */
 body::after {
-    bottom: -150px;
-    right: -150px;
-    background: radial-gradient(circle, #ffcce6 0%, #ffe6f2 60%, transparent 80%);
+    bottom: -200px;
+    right: -200px;
+    background: radial-gradient(
+        circle,
+        rgba(255, 50, 80, 0.5) 0%,
+        rgba(255, 120, 120, 0.35) 40%,
+        transparent 75%
+    );
 }
 
-/* Extra blob */
-body::marker {
-    display: none;
-}
-
-/* Make card above background */
-.register-card {
-    position: relative;
-    z-index: 2;
-}
-
-/* Center wrapper */
+/* ===== CENTER WRAPPER ===== */
 
 .center-wrapper {
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
 }
 
-/* Register Card */
+/* ===== REGISTER CARD ===== */
 
 .register-card {
+    position: relative;
+    z-index: 2;
     background: white;
     padding: 60px 50px;
-    width: 420px;
+    width: 440px;
     border-radius: 30px;
     text-align: center;
 
-    /* Softer shadow */
-    box-shadow: 0 20px 50px rgba(255, 158, 199, 0.25);
+    box-shadow: 0 30px 60px rgba(255, 75, 145, 0.25);
     transition: 0.3s ease;
 }
 
 .register-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-6px);
 }
 
-/* Title */
+/* ===== TITLE ===== */
 
 .register-card h1 {
     font-size: 28px;
     margin-bottom: 15px;
-    color: #ff7eb6; /* softer pink */
+    color: #ff4b91; /* unified brand pink */
 }
 
-/* Subtitle */
+/* ===== SUBTITLE ===== */
 
 .register-card p {
-    font-size: 16px;
+    font-size: 15px;
     margin-bottom: 35px;
-    color: #777;
+    color: #666;
 }
 
-/* Google Button */
+/* ===== GOOGLE BUTTON ===== */
 
 .google-btn {
     width: 100%;
-    padding: 15px;
-    border-radius: 30px;
+    padding: 16px;
+    border-radius: 35px;
     border: none;
     cursor: pointer;
 
@@ -115,10 +113,11 @@ body::marker {
     font-size: 15px;
     font-weight: 600;
 
-    /* Softer pink gradient */
-    background: linear-gradient(135deg, #ffb3d9, #ffd6e8);
-    color: #b30059;
+    /* Same gradient as sidebar / like button */
+    background: linear-gradient(135deg, #ff4b91, #ff8fb1);
+    color: white;
 
+    box-shadow: 0 12px 30px rgba(255, 75, 145, 0.4);
     transition: 0.3s ease;
 }
 
@@ -128,6 +127,6 @@ body::marker {
 }
 
 .google-btn:hover {
-    transform: scale(1.04);
-    box-shadow: 0 10px 25px rgba(255, 158, 199, 0.35);
+    transform: scale(1.05);
+    box-shadow: 0 15px 35px rgba(255, 75, 145, 0.5);
 }
