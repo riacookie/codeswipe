@@ -1,0 +1,132 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background: #fff5fa; /* same as home page */
+    position: relative;
+}
+
+/* ===== BACKGROUND BLOBS (Pink + Red Theme) ===== */
+
+body::before,
+body::after {
+    content: "";
+    position: absolute;
+    width: 650px;
+    height: 650px;
+    border-radius: 50%;
+    filter: blur(130px);
+    z-index: 0;
+}
+
+/* Top Left – Pink Glow */
+body::before {
+    top: -200px;
+    left: -200px;
+    background: radial-gradient(
+        circle,
+        rgba(255, 75, 145, 0.6) 0%,
+        rgba(255, 143, 177, 0.4) 40%,
+        transparent 75%
+    );
+}
+
+/* Bottom Right – Soft Red Glow */
+body::after {
+    bottom: -200px;
+    right: -200px;
+    background: radial-gradient(
+        circle,
+        rgba(255, 50, 80, 0.5) 0%,
+        rgba(255, 120, 120, 0.35) 40%,
+        transparent 75%
+    );
+}
+
+/* ===== CENTER WRAPPER ===== */
+
+.center-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ===== REGISTER CARD ===== */
+
+.register-card {
+    position: relative;
+    z-index: 2;
+    background: white;
+    padding: 60px 50px;
+    width: 440px;
+    border-radius: 30px;
+    text-align: center;
+
+    box-shadow: 0 30px 60px rgba(255, 75, 145, 0.25);
+    transition: 0.3s ease;
+}
+
+.register-card:hover {
+    transform: translateY(-6px);
+}
+
+/* ===== TITLE ===== */
+
+.register-card h1 {
+    font-size: 28px;
+    margin-bottom: 15px;
+    color: #ff4b91; /* unified brand pink */
+}
+
+/* ===== SUBTITLE ===== */
+
+.register-card p {
+    font-size: 15px;
+    margin-bottom: 35px;
+    color: #666;
+}
+
+/* ===== GOOGLE BUTTON ===== */
+
+.google-btn {
+    width: 100%;
+    padding: 16px;
+    border-radius: 35px;
+    border: none;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    /* Same gradient as sidebar / like button */
+    background: linear-gradient(135deg, #ff4b91, #ff8fb1);
+    color: white;
+
+    box-shadow: 0 12px 30px rgba(255, 75, 145, 0.4);
+    transition: 0.3s ease;
+}
+
+.google-btn img {
+    width: 22px;
+    height: 22px;
+}
+
+.google-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 35px rgba(255, 75, 145, 0.5);
+}
