@@ -1,117 +1,121 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
+<head>
+    <meta charset="UTF-8"/>
     <title>My Projects - CodeSwipe</title>
 
     <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     />
 
-    <link rel="stylesheet" href="/styles/myProjects.css" />
-  </head>
-  <body>
-    <div class="sidebar">
-      <div class="nav-top">
+    <link rel="stylesheet" href="/styles/myProjects.css"/>
+</head>
+<body>
+<div class="sidebar">
+    <div class="nav-top">
         <a href="/home" class="nav-item">
-          <i class="fa-solid fa-house"></i>
-          <span>Home</span>
+            <i class="fa-solid fa-house"></i>
+            <span>Home</span>
         </a>
 
         <a href="/project/interested" class="nav-item">
-          <i class="fa-solid fa-heart"></i>
-          <span>Interested</span>
+            <i class="fa-solid fa-heart"></i>
+            <span>Interested</span>
         </a>
 
         <a href="/project" class="nav-item active">
-          <i class="fa-solid fa-folder-open"></i>
-          <span>My Projects</span>
+            <i class="fa-solid fa-folder-open"></i>
+            <span>My Projects</span>
         </a>
 
         <a href="/profile" class="nav-item">
-          <i class="fa-solid fa-user"></i>
-          <span>Profile</span>
+            <i class="fa-solid fa-user"></i>
+            <span>Profile</span>
         </a>
-      </div>
-
-      <div class="nav-bottom">
-        <a href="/login" class="nav-item logout">
-          <i class="fa-solid fa-right-from-bracket"></i>
-          <span>Logout</span>
-        </a>
-      </div>
     </div>
 
-    <div class="logo">CodeSwipe</div>
+    <div class="nav-bottom">
+        <a href="/login" class="nav-item logout">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <span>Logout</span>
+        </a>
+    </div>
+</div>
 
-    <div class="main">
-      <div class="page-header">
+<div class="logo">CodeSwipe</div>
+
+<div class="main">
+    <div class="page-header">
         <h1>My Projects</h1>
 
         <a href="/project/new" class="create-btn">
-          <i class="fa-solid fa-plus"></i> Create Project
+            <i class="fa-solid fa-plus"></i> Create Project
         </a>
-      </div>
+    </div>
 
-      <div class="projects-grid">
+    <div class="projects-grid">
         <!-- Example Project Card -->
         <div class="my-project-card" id="project1">
-          <h3>AI Study Planner</h3>
-          <p class="description">
-            A smart study scheduling web app powered by AI.
-          </p>
+            <h3>AI Study Planner</h3>
+            <p class="description">
+                A smart study scheduling web app powered by AI.
+            </p>
 
-          <div class="meta">
-            <span><strong>Difficulty:</strong> Intermediate</span>
-            <span><strong>Skills:</strong> Java, Spring Boot</span>
-          </div>
+            <div class="meta">
+                <span><strong>Difficulty:</strong> Intermediate</span>
+                <span><strong>Skills:</strong> Java, Spring Boot</span>
+            </div>
 
-          <div class="card-actions">
-            <a href="/project/edit" class="edit-btn">
-              <i class="fa-solid fa-pen"></i>
-            </a>
-            <button class="delete-btn" onclick="openDeleteModal(this)">
-              <i class="fa-solid fa-trash"></i>
-            </button>
-          </div>
+            <div class="card-actions">
+                <a href="/project/edit" class="edit-btn">
+                    <i class="fa-solid fa-pen"></i>
+                </a>
+                <button class="delete-btn" onclick="openDeleteModal(this)">
+                    <i class="fa-solid fa-trash"></i>
+                </button>
+            </div>
         </div>
-      </div>
     </div>
-    <!-- DELETE CONFIRM MODAL -->
-    <div class="confirm-modal" id="deleteModal">
-      <div class="confirm-box">
+</div>
+<!-- DELETE CONFIRM MODAL -->
+<div class="confirm-modal" id="deleteModal">
+    <div class="confirm-box">
         <h3>Delete Project?</h3>
         <p>This action cannot be undone.</p>
 
         <div class="confirm-actions">
-          <button class="btn-cancel" onclick="closeDeleteModal()">
-            Cancel
-          </button>
-          <button class="btn-confirm" onclick="confirmDelete()">
-            Yes, Delete
-          </button>
+            <button class="btn-cancel" onclick="closeDeleteModal()">
+                Cancel
+            </button>
+            <button class="btn-confirm" onclick="confirmDelete()">
+                Yes, Delete
+            </button>
         </div>
-      </div>
     </div>
-    <script>
-      let projectToDelete = null;
+</div>
 
-      function openDeleteModal(button) {
+<script src="/js/utils.js"></script>
+<script src="/js/myProjects.js"></script>
+
+<script>
+    let projectToDelete = null;
+
+    function openDeleteModal(button) {
         projectToDelete = button.closest(".project-item");
         document.getElementById("deleteModal").classList.add("active");
-      }
+    }
 
-      function closeDeleteModal() {
+    function closeDeleteModal() {
         document.getElementById("deleteModal").classList.remove("active");
-      }
+    }
 
-      function confirmDelete() {
+    function confirmDelete() {
         if (projectToDelete) {
-          projectToDelete.remove();
+            projectToDelete.remove();
         }
         closeDeleteModal();
-      }
-    </script>
-  </body>
+    }
+</script>
+</body>
 </html>

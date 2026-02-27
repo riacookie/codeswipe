@@ -8,9 +8,9 @@ import java.util.List;
 
 public interface ProjectRepository extends JpaRepository<Project, Long> {
 
-    // FIND PROJECTS THE USER HAS NOT SWIPED ON
     @Query(value = "SELECT * FROM projects WHERE project_id NOT IN " +
             "(SELECT project_id FROM swipes WHERE user_id = :userId)",
             nativeQuery = true)
     List<Project> findProjectsNotSwipedByUser(@Param("userId") Long userId);
+    List<Project> findByUserUserId(Long userId);
 }

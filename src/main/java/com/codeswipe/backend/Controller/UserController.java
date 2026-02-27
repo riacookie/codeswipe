@@ -13,7 +13,6 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
-    // Update profile (Skills and Experience)
     @PutMapping("/{userId}")
     public User updateProfile(@PathVariable Long userId, @RequestBody User updatedUser) {
         return userRepository.findById(userId).map(user -> {

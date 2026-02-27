@@ -1,127 +1,147 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
+<head>
+    <meta charset="UTF-8"/>
     <title>Create Project - CodeSwipe</title>
 
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-    />
-
-    <link rel="stylesheet" href="/styles/newProject.css" />
-  </head>
-  <body>
-    <!-- SIDEBAR -->
-    <div class="sidebar">
-      <div class="nav-top">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    <link rel="stylesheet" href="/styles/newProject.css"/>
+</head>
+<body>
+<!-- SIDEBAR -->
+<div class="sidebar">
+    <div class="nav-top">
         <a href="/home" class="nav-item">
-          <i class="fa-solid fa-house"></i>
-          <span>Home</span>
+            <i class="fa-solid fa-house"></i>
+            <span>Home</span>
         </a>
-
         <a href="/project/interested" class="nav-item">
-          <i class="fa-solid fa-heart"></i>
-          <span>Interested</span>
+            <i class="fa-solid fa-heart"></i>
+            <span>Interested</span>
         </a>
-
         <a href="/project" class="nav-item active">
-          <i class="fa-solid fa-folder-open"></i>
-          <span>My Projects</span>
+            <i class="fa-solid fa-folder-open"></i>
+            <span>My Projects</span>
         </a>
-
         <a href="/profile" class="nav-item">
-          <i class="fa-solid fa-user"></i>
-          <span>Profile</span>
+            <i class="fa-solid fa-user"></i>
+            <span>Profile</span>
         </a>
-      </div>
-
-      <div class="nav-bottom">
-        <a href="/" class="nav-item logout">
-          <i class="fa-solid fa-right-from-bracket"></i>
-          <span>Logout</span>
-        </a>
-      </div>
     </div>
+    <div class="nav-bottom">
+        <a href="/" class="nav-item logout">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <span>Logout</span>
+        </a>
+    </div>
+</div>
 
-    <div class="logo">CodeSwipe</div>
+<div class="logo">CodeSwipe</div>
 
-    <!-- MAIN CONTENT -->
-    <div class="main">
-      <div class="form-container">
+<!-- MAIN CONTENT -->
+<div class="main">
+    <div class="form-container">
         <h1>Create New Project</h1>
 
-        <form>
-          <div class="form-group">
-            <label>Project Title</label>
-            <input type="text" placeholder="Enter project title" />
-          </div>
+        <form id="projectForm"> <!-- Added ID to form -->
+            <div class="form-group">
+                <label>Project Title</label>
+                <!-- ADDED id="pTitle" -->
+                <input type="text" id="pTitle" placeholder="Enter project title"/>
+            </div>
 
-          <div class="form-group">
-            <label>Description</label>
-            <textarea
-              rows="4"
-              placeholder="Describe your project..."
-            ></textarea>
-          </div>
+            <div class="form-group">
+                <label>Description</label>
+                <!-- ADDED id="pDesc" -->
+                <textarea id="pDesc" rows="4" placeholder="Describe your project..."></textarea>
+            </div>
 
-          <div class="form-group">
-            <label>Difficulty Level</label>
-            <select>
-              <option>Beginner</option>
-              <option>Intermediate</option>
-              <option>Advanced</option>
-            </select>
-          </div>
+            <div class="form-group">
+                <label>Difficulty Level</label>
+                <!-- ADDED id="pDiff" -->
+                <select id="pDiff">
+                    <option>Beginner</option>
+                    <option>Intermediate</option>
+                    <option>Advanced</option>
+                </select>
+            </div>
 
-          <div class="form-group">
-            <label>Required Skills (comma separated)</label>
-            <input type="text" placeholder="Java, Spring Boot, MySQL" />
-          </div>
+            <div class="form-group">
+                <label>Required Skills (comma separated)</label>
+                <!-- ADDED id="pSkills" -->
+                <input type="text" id="pSkills" placeholder="Java, Spring Boot, MySQL"/>
+            </div>
 
-          <div class="form-group">
-            <label>Contact Info</label>
-            <input type="text" placeholder="Email or social link" />
-          </div>
+            <!-- Note: Contact Info can be handled by the User Profile, but keeping UI as is -->
+            <div class="form-group">
+                <label>Contact Info (Optional)</label>
+                <input type="text" id="pContact" placeholder="Email or social link"/>
+            </div>
 
-          <button type="button" class="publish-btn" onclick="openModal()">
-            Publish Project
-          </button>
+            <button type="button" class="publish-btn" onclick="openModal()">
+                Publish Project
+            </button>
         </form>
-      </div>
     </div>
-    <!-- CONFIRM MODAL -->
-    <div class="confirm-modal" id="confirmModal">
-      <div class="confirm-box">
+</div>
+
+<!-- CONFIRM MODAL -->
+<div class="confirm-modal" id="confirmModal">
+    <div class="confirm-box">
         <h3>Publish Project?</h3>
         <p>Are you sure you want to publish this project?</p>
-
         <div class="confirm-actions">
-          <button class="btn-cancel" onclick="closeModal()">Cancel</button>
-          <button class="btn-confirm" onclick="confirmPublish()">
-            Yes, Publish
-          </button>
+            <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+            <button class="btn-confirm" onclick="confirmPublish()">Yes, Publish</button>
         </div>
-      </div>
     </div>
-    <script>
-      function openModal() {
+</div>
+
+<!-- LOAD UTILS FIRST -->
+<script src="/js/utils.js"></script>
+
+<script>
+    function openModal() {
+        // Simple check: make sure title is not empty
+        if(!document.getElementById("pTitle").value) {
+            alert("Please enter a title!");
+            return;
+        }
         document.getElementById("confirmModal").classList.add("active");
-      }
+    }
 
-      function closeModal() {
+    function closeModal() {
         document.getElementById("confirmModal").classList.remove("active");
-      }
+    }
 
-      function confirmPublish() {
+    async function confirmPublish() {
         closeModal();
 
-        // Nếu có form:
-        document.getElementById("projectForm").submit();
+        const userId = getUserId(); // Helper from utils.js
+        if (!userId) return;
 
-        // Nếu chưa có backend thì bạn có thể thay bằng:
-        // alert("Project Published Successfully!");
-      }
-    </script>
-  </body>
+        // GATHER DATA FROM THE INPUTS WE GAVE IDs TO
+        const projectData = {
+            title: document.getElementById("pTitle").value,
+            description: document.getElementById("pDesc").value,
+            difficultyLevel: document.getElementById("pDiff").value,
+            skillName: document.getElementById("pSkills").value,
+            // We must send the user object so Spring knows who created it
+            user: { userId: parseInt(userId) }
+        };
+
+        console.log("Sending data:", projectData);
+
+        // CALL THE BACKEND
+        const result = await apiCall("/projects/all", "POST", projectData);
+
+        if (result) {
+            alert("Project Published Successfully! 🚀");
+            window.location.href = "/project"; // Go back to My Projects list
+        } else {
+            alert("Failed to publish project. Check console.");
+        }
+    }
+</script>
+</body>
 </html>
