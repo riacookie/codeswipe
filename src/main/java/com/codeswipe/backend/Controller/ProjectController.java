@@ -15,15 +15,30 @@ public class ProjectController {
     @Autowired
     private ProjectRepository projectRepository;
 
-    // 1. Get the "Deck" of cards for a specific user
     @GetMapping("/deck/{userId}")
     public List<Project> getProjectDeck(@PathVariable Long userId) {
         return projectRepository.findProjectsNotSwipedByUser(userId);
     }
 
-    // 2. Get all projects (Just for debugging)
     @GetMapping("/all")
     public List<Project> getAll() {
         return projectRepository.findAll();
+    }
+
+    @PostMapping("/all")
+    public Project createProject(@RequestBody Project project) {
+        project.setCreatedDate(java.time.LocalDate.now());
+        return projectRepository.save(project);
+    }
+
+    @GetMapping("/user/{userId}")
+    public List<Project> getMyProjects(@PathVariable Long userId) {
+        return projectRepository.findByUserUserId(userId);
+    }
+
+    @DeleteMapping("/{projectId}")
+    public String deleteProject(@PathVariable Long projectId) {
+        projectRepository.deleteById(projectId);
+        return "Project deleted successfully";
     }
 }
