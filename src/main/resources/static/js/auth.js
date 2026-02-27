@@ -69,8 +69,8 @@ async function saveUserToBackend(firebaseUser) {
 
             alert("Logged in as " + backendUser.username);
 
-            // Redirect to the swipe page (index.html)
-            window.location.href = "index.html";
+            // Redirect to the swipe page
+            window.location.href = "/home";
         } else {
             console.error("Backend Error:", response.status);
         }

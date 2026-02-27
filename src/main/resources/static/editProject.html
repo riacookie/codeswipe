@@ -10,7 +10,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
 rel="stylesheet">
 
-<link rel="stylesheet" href="styles/editProject.css">
+<link rel="stylesheet" href="/styles/editProject.css">
 </head>
 
 <body>
@@ -22,22 +22,22 @@ rel="stylesheet">
         
 
         <div class="nav-top">
-            <a href="homePage.html" class="nav-item">
+            <a href="/home" class="nav-item">
                 <i class="fa-solid fa-house"></i>
                 <span>Home</span>
             </a>
 
-            <a href="interested.html" class="nav-item">
+            <a href="/project/interested" class="nav-item">
                 <i class="fa-solid fa-heart"></i>
                 <span>Interested</span>
             </a>
 
-            <a href="myProjects.html" class="nav-item">
+            <a href="/project" class="nav-item">
                 <i class="fa-solid fa-folder-open"></i>
                 <span>My Projects</span>
             </a>
 
-            <a href="profile.html" class="nav-item">
+            <a href="/profile" class="nav-item">
                 <i class="fa-solid fa-user"></i>
                 <span>Profile</span>
             </a>
@@ -45,7 +45,7 @@ rel="stylesheet">
     </div>
 
     <div class="nav-bottom">
-        <a href="loginPage.html" class="nav-item">
+        <a href="/login" class="nav-item">
             <i class="fa-solid fa-right-from-bracket"></i>
             <span>Logout</span>
         </a>
@@ -86,7 +86,7 @@ rel="stylesheet">
         <div class="button-group">
             <button class="save-btn" onclick="openConfirm()">Save Changes</button>
             <button class="cancel-btn"
-                onclick="window.location.href='myProjects.html'">
+                onclick="window.location.href='/project'">
                 Cancel
             </button>
         </div>
@@ -118,7 +118,7 @@ function closeConfirm() {
 function saveProject() {
     closeConfirm();
     alert("Project updated successfully!");
-    window.location.href = "myProjects.html";
+    window.location.href = "/project";
 }
 </script>
 
