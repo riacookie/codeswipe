@@ -1,38 +1,46 @@
-// 1. Paste your Firebase Config here
-const firebaseConfig = {
-    apiKey: "AIzaSyCFijmuK0x4Mu8W2KXbuOyXKE0KvB68B_Y",
-    authDomain: "codeswipe-24f7e.firebaseapp.com",
-    projectId: "codeswipe-24f7e",
-    storageBucket: "codeswipe-24f7e.firebasestorage.app",
-    messagingSenderId: "40195048342",
-    appId: "1:40195048342:web:29d4812bd931b3c18bd3b7",
-    measurementId: "G-1LPGCH2PR0"
-};
+// Firebase config is loaded securely from the backend
+async function initializeApp() {
+    try {
+        const response = await fetch('http://localhost:8080/api/config/firebase');
+        if (!response.ok) throw new Error('Failed to load Firebase config');
 
-// 2. Initialize Firebase
-firebase.initializeApp(firebaseConfig);
+        const firebaseConfig = await response.json();
 
-// 3. Select the button from the HTML
-const loginBtn = document.getElementById('google-login');
+        // 2. Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        console.log("Firebase initialized securely");
 
-// 4. When the button is clicked...
-loginBtn.addEventListener('click', () => {
-    const provider = new firebase.auth.GoogleAuthProvider();
+        // 3. Select the button from the HTML
+        const loginBtn = document.getElementById('google-login');
+        if (loginBtn) {
+            setupLoginButton(loginBtn);
+        }
 
-    // Open the Google Popup
-    firebase.auth().signInWithPopup(provider)
-        .then((result) => {
-            const user = result.user;
-            console.log("Google Login Successful:", user.displayName);
+    } catch (error) {
+        console.error("Error initializing app:", error);
+    }
+}
 
-            // Send data to your Spring Boot Backend
-            saveUserToBackend(user);
-        })
-        .catch((error) => {
-            console.error("Login Error:", error);
-            alert("Login failed! Check console.");
-        });
-});
+function setupLoginButton(loginBtn) {
+    // 4. When the button is clicked...
+    loginBtn.addEventListener('click', () => {
+        const provider = new firebase.auth.GoogleAuthProvider();
+
+        // Open the Google Popup
+        firebase.auth().signInWithPopup(provider)
+            .then((result) => {
+                const user = result.user;
+                console.log("Google Login Successful:", user.displayName);
+
+                // Send data to your Spring Boot Backend
+                saveUserToBackend(user);
+            })
+            .catch((error) => {
+                console.error("Login Error:", error);
+                alert("Login failed! Check console.");
+            });
+    });
+}
 
 // 5. Function to send data to Spring Boot
 async function saveUserToBackend(firebaseUser) {
@@ -70,3 +78,6 @@ async function saveUserToBackend(firebaseUser) {
         console.error("Fetch Error:", error);
     }
 }
+
+// Start the app
+initializeApp();
