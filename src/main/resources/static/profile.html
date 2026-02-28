@@ -7,10 +7,11 @@
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-    <link rel="stylesheet" href="/styles/profile.css">
+    <link rel="stylesheet" href="styles/profile.css">
 </head>
 <body>
 
+<!-- SIDEBAR -->
 <div class="sidebar">
     <div class="nav-top">
         <a href="/home" class="nav-item">
@@ -44,58 +45,155 @@
 
 <div class="logo">CodeSwipe</div>
 
+<!-- MAIN -->
 <div class="main">
-
     <div class="profile-card">
 
         <h1>My Profile</h1>
 
         <div class="avatar-section">
             <div class="avatar-preview" id="avatarPreview"></div>
-            <label class="change-avatar">
-                <i class="fa-solid fa-camera"></i> Change Avatar
-                <input type="file" id="avatarInput" hidden>
-            </label>
         </div>
 
-        <form class="profile-form">
-
-            <div class="form-group">
+        <div class="profile-info">
+            <div class="info-group">
                 <label>Full Name</label>
-                <input type="text" placeholder="Enter your name" id="profName">
+                <p id="displayName">John Doe</p>
             </div>
 
-            <div class="form-group">
+            <div class="info-group">
                 <label>Email</label>
-                <input type="email" placeholder="Enter your email" id="profEmail">
+                <p id="displayEmail">john@email.com</p>
             </div>
 
-            <div class="form-group">
-                <label>GitHub / Contact Link</label>
-                <input type="text" placeholder="Enter your GitHub or portfolio link" id="profPhone">
+            <div class="info-group">
+                <label>GitHub / Contact</label>
+                <p id="displayContact">github.com/johndoe</p>
             </div>
 
-            <button type="button" class="save-btn" onclick="saveProfile()">
-                Save Changes
+            <div class="info-group">
+                <label>Telephone</label>
+                <p id="displayPhone">0123456789</p>
+            </div>
+
+            <div class="info-group">
+                <label>Experience Level</label>
+                <p id="displayLevel">Beginner</p>
+            </div>
+
+            <button class="update-btn" onclick="openModal()">
+                Update Profile
             </button>
-
-        </form>
-
+        </div>
     </div>
-
 </div>
 
-<script src="/js/utils.js"></script>
+<!-- UPDATE MODAL -->
+<div class="modal" id="updateModal">
+    <div class="modal-content">
+
+        <h2>Update Profile</h2>
+
+        <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" id="editName">
+        </div>
+
+        <div class="form-group">
+            <label>Email</label>
+            <input type="email" id="editEmail">
+        </div>
+
+        <div class="form-group">
+            <label>GitHub / Contact</label>
+            <input type="text" id="editContact">
+        </div>
+
+        <div class="form-group">
+            <label>Telephone</label>
+            <input type="text" id="editPhone">
+        </div>
+
+        <div class="form-group">
+            <label>Experience Level</label>
+            <select id="editLevel">
+                <option value="Beginner">Beginner</option>
+                <option value="Intermediate">Intermediate</option>
+                <option value="Advanced">Advanced</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Change Avatar</label>
+            <input type="file" id="avatarInput">
+        </div>
+
+        <div class="modal-buttons">
+            <!-- KHÔNG gọi saveProfile ở đây nữa -->
+            <button class="save-btn" onclick="openConfirm()">Save</button>
+            <button class="cancel-btn" onclick="closeModal()">Cancel</button>
+        </div>
+
+    </div>
+</div>
+
+<!-- CONFIRM MODAL -->
+<div class="confirm-modal" id="confirmModal">
+    <div class="confirm-box">
+        <h3>Confirm Update</h3>
+        <p>Are you sure you want to update your profile?</p>
+
+        <div id="confirm-actions" class="confirm-actions">
+            <!-- saveProfile được gọi ở file JS khác -->
+            <button class="confirm-btn" onclick="confirmUpdate()">Yes</button>
+            <button class="cancel-btn" onclick="closeConfirm()">No</button>
+        </div>
+    </div>
+</div>
 
 <script>
-    document.getElementById("avatarInput").addEventListener("change", function (event) {
-        const reader = new FileReader();
-        reader.onload = function () {
-            document.getElementById("avatarPreview").style.backgroundImage =
-                "url('" + reader.result + "')";
-        };
-        reader.readAsDataURL(event.target.files[0]);
-    });
+
+function openModal() {
+    document.getElementById("updateModal").style.display = "flex";
+
+    editName.value = displayName.innerText;
+    editEmail.value = displayEmail.innerText;
+    editContact.value = displayContact.innerText;
+    editPhone.value = displayPhone.innerText;
+    editLevel.value = displayLevel.innerText;
+}
+
+function closeModal() {
+    document.getElementById("updateModal").style.display = "none";
+}
+
+function openConfirm() {
+    document.getElementById("confirmModal").style.display = "flex";
+}
+
+function closeConfirm() {
+    document.getElementById("confirmModal").style.display = "none";
+}
+
+function confirmUpdate() {
+    closeConfirm();
+    closeModal();
+    
+    // gọi hàm saveProfile trong file JS khác
+    if (typeof saveProfile === "function") {
+        saveProfile();
+    }
+}
+
+document.getElementById("avatarInput").addEventListener("change", function (event) {
+    const reader = new FileReader();
+    reader.onload = function () {
+        document.getElementById("avatarPreview").style.backgroundImage =
+            "url('" + reader.result + "')";
+    };
+    reader.readAsDataURL(event.target.files[0]);
+});
+
 </script>
 
 </body>
