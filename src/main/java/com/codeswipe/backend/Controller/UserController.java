@@ -18,10 +18,10 @@ public class UserController {
     @PutMapping("/{userId}")
     public User updateProfile(@PathVariable Long userId, @RequestBody User updatedUser) {
         return userRepository.findById(userId).map(user -> {
-            user.setExperienceLevel(updatedUser.getExperienceLevel());
-            user.setRole(updatedUser.getRole());
-            user.setTelephone(updatedUser.getTelephone());
-            // Add any other fields you want the user to be able to change
+            if (updatedUser.getUsername() != null) user.setUsername(updatedUser.getUsername());
+            if (updatedUser.getExperienceLevel() != null) user.setExperienceLevel(updatedUser.getExperienceLevel());
+            if (updatedUser.getRole() != null) user.setRole(updatedUser.getRole());
+            if (updatedUser.getTelephone() != null) user.setTelephone(updatedUser.getTelephone());
             return userRepository.save(user);
         }).orElseThrow();
     }
