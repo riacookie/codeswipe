@@ -3,10 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Profile - CodeSwipe</title>
-
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="/styles/profile.css">
 </head>
 <body>
@@ -18,25 +15,21 @@
             <i class="fa-solid fa-house"></i>
             <span>Home</span>
         </a>
-
         <a href="/project/interested" class="nav-item">
             <i class="fa-solid fa-heart"></i>
             <span>Interested</span>
         </a>
-
         <a href="/project" class="nav-item">
             <i class="fa-solid fa-folder-open"></i>
             <span>My Projects</span>
         </a>
-
         <a href="/profile" class="nav-item active">
             <i class="fa-solid fa-user"></i>
             <span>Profile</span>
         </a>
     </div>
-
     <div class="nav-bottom">
-        <a href="/login" class="nav-item logout">
+        <a href="/login" class="nav-item logout" id="logoutBtn">
             <i class="fa-solid fa-right-from-bracket"></i>
             <span>Logout</span>
         </a>
@@ -51,48 +44,53 @@
 
         <h1>My Profile</h1>
 
+        <!-- AVATAR -->
         <div class="avatar-section">
-            <div class="avatar-wrapper" onclick="document.getElementById('avatarInput').click()">
+            <div class="avatar-wrapper">
                 <div class="avatar-preview" id="avatarPreview"></div>
-                <div class="avatar-overlay">
-                    <i class="fa-solid fa-camera"></i>
-                </div>
+                <div class="avatar-initials" id="avatarInitials"></div>
             </div>
-            <input type="file" id="avatarInput" style="display: none;">
         </div>
 
+        <!-- STATS -->
+        <div class="profile-stats">
+            <div class="stat-item">
+                <span class="stat-number" id="statProjects">—</span>
+                <span class="stat-label">Projects</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+                <span class="stat-number" id="statLevel">—</span>
+                <span class="stat-label">Experience</span>
+            </div>
+        </div>
+
+        <!-- EDITABLE INFO -->
         <div class="profile-info">
             <div class="info-group">
-                <label>Full Name</label>
-                <input type="text" id="displayName" class="profile-input" value="John Doe">
+                <label for="displayName"><i class="fa-solid fa-user"></i> Full Name</label>
+                <input type="text" id="displayName" class="profile-input" placeholder="Your name">
             </div>
-
             <div class="info-group">
-                <label>Email</label>
-                <input type="email" id="displayEmail" class="profile-input" value="john@email.com" readonly>
+                <label for="displayEmail"><i class="fa-solid fa-envelope"></i> Email</label>
+                <input type="email" id="displayEmail" class="profile-input" readonly>
             </div>
-
             <div class="info-group">
-                <label>GitHub / Contact</label>
-                <input type="text" id="displayContact" class="profile-input" value="github.com/johndoe">
+                <label for="displayPhone"><i class="fa-solid fa-phone"></i> Telephone</label>
+                <input type="text" id="displayPhone" class="profile-input" placeholder="e.g. 0812345678">
             </div>
-
             <div class="info-group">
-                <label>Telephone</label>
-                <input type="text" id="displayPhone" class="profile-input" value="0123456789">
-            </div>
-
-            <div class="info-group">
-                <label>Experience Level</label>
+                <label for="displayLevel"><i class="fa-solid fa-chart-line"></i> Experience Level</label>
                 <select id="displayLevel" class="profile-input">
-                    <option value="Beginner" selected>Beginner</option>
+                    <option value="">-- Select Level --</option>
+                    <option value="Beginner">Beginner</option>
                     <option value="Intermediate">Intermediate</option>
                     <option value="Advanced">Advanced</option>
                 </select>
             </div>
 
             <button class="update-btn" onclick="openConfirm()">
-                Update Profile
+                <i class="fa-solid fa-floppy-disk"></i> Update Profile
             </button>
         </div>
     </div>
@@ -102,14 +100,16 @@
 <div class="confirm-modal" id="confirmModal">
     <div class="confirm-box">
         <h3>Confirm Update</h3>
-        <p>Are you sure you want to update your profile?</p>
-
+        <p>Are you sure you want to save these changes?</p>
         <div class="confirm-actions">
-            <button class="confirm-btn" onclick="confirmUpdate()">Yes</button>
-            <button class="cancel-btn" onclick="closeConfirm()">No</button>
+            <button class="confirm-btn" onclick="confirmUpdate()">Yes, Save</button>
+            <button class="cancel-btn" onclick="closeConfirm()">Cancel</button>
         </div>
     </div>
 </div>
+
+<!-- TOAST NOTIFICATION -->
+<div class="toast" id="toast"></div>
 
 <script src="/js/utils.js"></script>
 <script src="/js/profile.js"></script>
@@ -125,20 +125,14 @@
 
     function confirmUpdate() {
         closeConfirm();
-        if (typeof saveProfile === "function") {
-            saveProfile();
-        }
+        if (typeof saveProfile === "function") saveProfile();
     }
 
-    document.getElementById("avatarInput").addEventListener("change", function (event) {
-        const reader = new FileReader();
-        reader.onload = function () {
-            document.getElementById("avatarPreview").style.backgroundImage =
-                "url('" + reader.result + "')";
-        };
-        if (event.target.files[0]) {
-            reader.readAsDataURL(event.target.files[0]);
-        }
+    document.getElementById("logoutBtn").addEventListener("click", async function(e) {
+        e.preventDefault();
+        await apiCall("/auth/logout", "POST");
+        localStorage.clear();
+        window.location.href = "/login";
     });
 </script>
 

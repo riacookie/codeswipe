@@ -1,21 +1,59 @@
+function showToast(message, isError = false) {
+    const toast = document.getElementById("toast");
+    toast.textContent = message;
+    toast.className = "toast" + (isError ? " error" : " success");
+    toast.classList.add("show");
+    setTimeout(() => toast.classList.remove("show"), 3000);
+}
+
+function setAvatarInitials(name) {
+    const preview = document.getElementById("avatarPreview");
+    const initials = document.getElementById("avatarInitials");
+    if (!preview.style.backgroundImage || preview.style.backgroundImage === "none") {
+        const parts = (name || "?").trim().split(" ");
+        const text = parts.length >= 2
+            ? parts[0][0] + parts[parts.length - 1][0]
+            : parts[0][0];
+        initials.textContent = text.toUpperCase();
+        initials.style.display = "flex";
+    } else {
+        initials.style.display = "none";
+    }
+}
+
 async function loadProfile() {
     const userId = getUserId();
     if (!userId) return;
 
-    const user = await apiCall(`/users/${userId}`);
+    const [user, projects] = await Promise.all([
+        apiCall(`/users/${userId}`),
+        apiCall(`/projects/user/${userId}`)
+    ]);
+
     if (user) {
-        // Update input fields
         document.getElementById("displayName").value = user.username || "";
         document.getElementById("displayEmail").value = user.email || "";
         document.getElementById("displayPhone").value = user.telephone || "";
-        
-        // These fields might not exist in the user object yet, handle gracefully
-        if(user.contact) document.getElementById("displayContact").value = user.contact;
-        if(user.level) document.getElementById("displayLevel").value = user.level;
+
+        const levelSelect = document.getElementById("displayLevel");
+        if (user.experienceLevel) {
+            levelSelect.value = user.experienceLevel;
+        }
 
         if (user.avtUrl) {
             document.getElementById("avatarPreview").style.backgroundImage = `url('${user.avtUrl}')`;
+            document.getElementById("avatarInitials").style.display = "none";
+        } else {
+            document.getElementById("avatarPreview").style.backgroundImage = "none";
+            setAvatarInitials(user.username);
         }
+
+        // Stats bar
+        document.getElementById("statLevel").textContent = user.experienceLevel || "—";
+    }
+
+    if (projects) {
+        document.getElementById("statProjects").textContent = projects.length;
     }
 }
 
@@ -24,25 +62,23 @@ async function saveProfile() {
     if (!userId) return;
 
     const updatedData = {
-        username: document.getElementById("displayName").value,
-        telephone: document.getElementById("displayPhone").value,
-        contact: document.getElementById("displayContact").value,
-        level: document.getElementById("displayLevel").value
+        username: document.getElementById("displayName").value.trim(),
+        telephone: document.getElementById("displayPhone").value.trim(),
+        experienceLevel: document.getElementById("displayLevel").value
     };
 
-    // Note: The backend might not support updating all these fields yet.
-    // Adjust the payload based on your API definition.
-    
     const result = await apiCall(`/users/${userId}`, "PUT", updatedData);
-    
+
     if (result) {
-        alert("Profile updated successfully.");
+        alert("Updated");
         localStorage.setItem("userName", updatedData.username);
-        
-        // Reload profile to ensure sync
-        loadProfile();
+
+        // Refresh stats bar
+        document.getElementById("statLevel").textContent = updatedData.experienceLevel || "—";
+        setAvatarInitials(updatedData.username);
+    } else {
+        showToast("Failed to update profile.", true);
     }
 }
 
-// Load profile when the script runs
 document.addEventListener('DOMContentLoaded', loadProfile);
