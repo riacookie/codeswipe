@@ -13,10 +13,15 @@ function getUserId() {
 // Clean helper for Fetch
 async function apiCall(endpoint, method = "GET", body = null) {
     const url = endpoint.startsWith('http') ? endpoint : `${API_BASE}${endpoint}`;
+
     const options = {
         method,
-        headers: { "Content-Type": "application/json" }
+        headers: {
+            "Content-Type": "application/json"
+        },
+        credentials: 'include'
     };
+
     if (body) options.body = JSON.stringify(body);
 
     const response = await fetch(url, options);
