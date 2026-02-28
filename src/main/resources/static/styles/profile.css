@@ -10,22 +10,22 @@ body {
     display: flex;
     font-family: 'Poppins', sans-serif;
     height: 100vh;
-    background: #fff5fa;
+    background: radial-gradient(circle at top left, #ffd6e7, #ffffff 40%),
+                radial-gradient(circle at bottom right, #ffc2dc, #ffffff 40%);
+    color: #333;
+    overflow: hidden; /* Prevent body scroll, handle in main */
 }
 
 /* SIDEBAR */
 .sidebar {
-    position: fixed;     /* 👈 QUAN TRỌNG */
-    top: 0;
-    left: 0;
-    height: 100vh;       /* full chiều cao màn hình */
     width: 85px;
-
     background: linear-gradient(180deg, #ff4b91, #ff8fb1);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     padding: 30px 0;
+    flex-shrink: 0;
+    z-index: 100;
 }
 
 .nav-top {
@@ -48,7 +48,8 @@ body {
     transition: 0.3s;
 }
 
-.nav-item:hover i {
+.nav-item:hover i,
+.nav-item.active i {
     color: black;
 }
 
@@ -76,6 +77,8 @@ body {
     font-weight: 700;
     font-size: 24px;
     color: #ff4f9a;
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: 0.5px;
 }
 
 /* MAIN */
@@ -83,194 +86,186 @@ body {
     flex: 1;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start; /* Prevents top cut-off on scroll */
+    height: 100vh;
+    overflow-y: auto;
+    padding: 40px 20px;
 }
 
 /* PROFILE CARD */
 .profile-card {
-    background: white;
+    background: rgba(255, 255, 255, 0.95); /* Slightly translucent */
+    backdrop-filter: blur(10px);
     padding: 50px;
     width: 520px;
+    max-width: 100%;
     border-radius: 30px;
-    box-shadow: 0 30px 60px rgba(255,75,145,0.2);
+    box-shadow: 0 20px 60px rgba(255, 75, 145, 0.25);
     text-align: center;
+    margin-top: auto;
+    margin-bottom: auto;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.profile-card:hover {
+    transform: translateY(-5px);
 }
 
 .profile-card h1 {
     margin-bottom: 30px;
     color: #ff4b91;
+    font-size: 28px;
+    letter-spacing: -0.5px;
 }
 
 /* AVATAR */
+.avatar-section {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 30px;
+}
+
 .avatar-preview {
-    width: 120px;
-    height: 120px;
+    width: 140px;
+    height: 140px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #ff4b91, #ff8fb1);
-    margin: 0 auto 20px;
+    background: linear-gradient(135deg, #ff9fc5, #ff7eb3); /* Updated gradient */
+    margin: 0 auto;
     background-size: cover;
     background-position: center;
+    border: 5px solid white;
+    box-shadow: 0 10px 25px rgba(255, 75, 145, 0.3);
 }
 
 /* INFO */
 .profile-info {
     text-align: left;
+    background: #fff;
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.03);
+    border: 1px solid #f0f0f0;
 }
 
 .info-group {
-    margin-bottom: 18px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #f9f9f9;
+    padding-bottom: 10px;
+}
+
+.info-group:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
 }
 
 .info-group label {
-    font-weight: 600;
-    font-size: 14px;
-    color: #555;
-}
-
-.info-group p {
-    font-size: 14px;
-    margin-top: 4px;
-}
-
-/* BUTTON */
-.update-btn {
-    width: 100%;
-    margin-top: 25px;
-    padding: 14px;
-    border-radius: 25px;
-    border: none;
-    background: linear-gradient(135deg, #ff4b91, #ff8fb1);
-    color: white;
-    font-weight: 600;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.update-btn:hover {
-    transform: scale(1.05);
-}
-
-/* MODAL */
-.modal {
-    position: fixed;
-    inset: 0;
-    /* Thay đổi background từ trong suốt sang màu đặc hơn một chút hoặc cùng màu nền body */
-    background: rgba(255, 245, 250, 0.8); 
-    
-    /* Thêm dòng này để làm nhòe mọi thứ phía sau */
-    backdrop-filter: blur(15px); 
-    -webkit-backdrop-filter: blur(15px); /* Hỗ trợ Safari */
-
-    display: none; /* Sẽ được điều chỉnh thành flex bằng JS */
-    justify-content: center;
-    align-items: center;
-    z-index: 9999; /* Đảm bảo con số này lớn hơn z-index của sidebar và logo */
-}
-
-.modal-content {
-    background: white;
-    padding: 40px;
-    width: 450px;
-    border-radius: 25px;
-    box-shadow: 0 30px 60px rgba(255,75,145,0.3);
-}
-
-.modal-content h2 {
-    margin-bottom: 25px;
-    color: #ff4b91;
-}
-
-.form-group {
-    margin-bottom: 18px;
-}
-
-.form-group label {
     display: block;
-    font-size: 14px;
-    margin-bottom: 6px;
-    font-weight: 500;
+    font-weight: 600;
+    font-size: 13px;
+    color: #ff4b91; /* Highlight label color */
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 5px;
 }
 
-.form-group input,
-.form-group select {
+
+.profile-input {
     width: 100%;
     padding: 12px;
     border-radius: 12px;
     border: 1px solid #ddd;
-    font-size: 14px;
+    font-size: 15px;
     outline: none;
+    transition: 0.3s;
+    background: #fdfdfd;
 }
 
-.form-group input:focus,
-.form-group select:focus {
+.profile-input:focus {
     border-color: #ff4b91;
+    box-shadow: 0 0 0 4px rgba(255, 75, 145, 0.1);
+    background: white;
 }
 
-/* MODAL BUTTONS */
-.modal-buttons {
-    margin-top: 25px;
+.profile-input[readonly] {
+    background-color: #f9f9f9;
+    cursor: not-allowed;
+    color: #888;
+    border-color: #eee;
+}
+
+/* AVATAR WRAPPER FOR HOVER EFFECT */
+.avatar-wrapper {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    margin: 0 auto;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.avatar-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.4);
     display: flex;
-    justify-content: space-between;
-    gap: 15px;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: 0.3s;
 }
 
-.save-btn {
-    flex: 1;
-    padding: 12px;
-    border-radius: 25px;
+.avatar-wrapper:hover .avatar-overlay {
+    opacity: 1;
+}
+
+.avatar-overlay i {
+    color: white;
+    font-size: 24px;
+}
+
+
+/* BUTTON */
+.update-btn {
+    width: 100%;
+    margin-top: 30px;
+    padding: 16px;
+    border-radius: 30px;
     border: none;
     background: linear-gradient(135deg, #ff4b91, #ff8fb1);
     color: white;
     font-weight: 600;
+    font-size: 16px;
     cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 10px 25px rgba(255, 75, 145, 0.4);
 }
 
-.cancel-btn {
-    flex: auto;
-    padding: 12px;
-    border-radius: 25px;
-    border: 2px solid #ff4b91;
-    background: white;
-    color: #ff4b91;
-    cursor: pointer;
+.update-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 30px rgba(255, 75, 145, 0.5);
 }
 
-/* UPDATE MODAL */
-
-.modal,
+/* MODAL */
 .confirm-modal {
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.4);
+    background: rgba(255, 245, 250, 0.8);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
     display: none;
     justify-content: center;
     align-items: center;
-    z-index: 999;
-}
-
-.modal-content {
-    background: white;
-    width: 500px;   /* SAME WIDTH AS PROFILE CARD */
-    padding: 50px;
-    border-radius: 30px;
-    box-shadow: 0 30px 60px rgba(255,75,145,0.3);
-}
-
-.modal-content h2 {
-    text-align: center;
-    margin-bottom: 30px;
-    color: #ff4b91;
-}
-
-.modal-buttons {
-    margin-top: 25px;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
+    z-index: 9999;
 }
 
 /* CONFIRM BOX */
-
 .confirm-box {
     background: white;
     padding: 40px;
@@ -288,7 +283,6 @@ body {
 .confirm-actions {
     margin-top: 20px;
     display: flex;
-    
     justify-content: center;
     gap: 20px;
 }
@@ -301,9 +295,16 @@ body {
     background: linear-gradient(135deg, #ff4b91, #ff8fb1);
     color: white;
     cursor: pointer;
+    font-weight: 600;
 }
 
-#confirm-actions{
-    display: flex;
-    flex: auto;
+.cancel-btn {
+    flex: 1;
+    padding: 10px 25px;
+    border-radius: 25px;
+    border: 2px solid #ff4b91;
+    background: white;
+    color: #ff4b91;
+    cursor: pointer;
+    font-weight: 600;
 }
