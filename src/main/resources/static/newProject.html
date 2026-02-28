@@ -43,6 +43,18 @@
     <div class="form-container">
         <h1>Create New Project</h1>
 
+        <!-- AI GENERATION SECTION -->
+        <div class="ai-section">
+           <h3>✨ Generate with AI</h3>
+           <div class="form-group">
+               <label>Describe your project idea</label>
+               <textarea id="aiPrompt" rows="2" placeholder="e.g. A social media app for pet owners..."></textarea>
+           </div>
+           <button type="button" class="ai-generate-btn" onclick="generateProject()">
+               <i class="fa-solid fa-wand-magic-sparkles"></i> Generate Details
+           </button>
+        </div>
+
         <form id="projectForm"> <!-- Added ID to form -->
             <div class="form-group">
                 <label>Project Title</label>
@@ -101,6 +113,44 @@
 <script src="/js/utils.js"></script>
 
 <script>
+        async function generateProject() {
+            const prompt = document.getElementById("aiPrompt").value;
+            if (!prompt) {
+                alert("Please enter a project idea prompt!");
+                return;
+            }
+
+            const btn = document.querySelector(".ai-section button");
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Generating...';
+            btn.disabled = true;
+
+            try {
+                const response = await fetch('/api/genProject?prompt=' + encodeURIComponent(prompt), {
+                    method: 'POST'
+                });
+
+                if (!response.ok) throw new Error('Generation failed');
+
+                const data = await response.json();
+
+                // Fill the form
+                if (data.title) document.getElementById("pTitle").value = data.title;
+                if (data.description) document.getElementById("pDesc").value = data.description;
+                if (data.difficultyLevel) document.getElementById("pDiff").value = data.difficultyLevel;
+                if (data.skillName) document.getElementById("pSkills").value = data.skillName;
+
+                alert("Project details generated! 🚀");
+
+            } catch (error) {
+                console.error(error);
+                alert("Failed to generate project. Please try again.");
+            } finally {
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            }
+        }
+
     function openModal() {
         // Simple check: make sure title is not empty
         if(!document.getElementById("pTitle").value) {
