@@ -144,8 +144,8 @@ INSERT INTO projects (title, description, difficulty_level, skill_name, created_
 
 ## 👥 Contributors
 
-* **Backend & API:** [Your Name/Team]
-* **AI Integration:** [Your Name/Team]
-* **Frontend UI/UX:** [Your Name/Team]
+* **Backend & API:** Vo Cao Minh, Bui Pham Chi Nhan
+* **AI Integration:** Vo Cao Minh
+* **Frontend UI/UX:** Mai Xuan Hieu
 
 *Created for the IT Student Community.*

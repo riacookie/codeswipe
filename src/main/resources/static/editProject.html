@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Edit Project - CodeSwipe</title>
 
 <link rel="stylesheet"
@@ -16,10 +17,12 @@ rel="stylesheet">
 <body>
 
 <!-- SIDEBAR -->
-<div class="sidebar">
+<div class="sidebar" id="sidebar">
 
     <div>
-        
+        <button class="sidebar-toggle" id="sidebarToggle" onclick="document.getElementById('sidebar').classList.toggle('open')">
+            <i class="fa-solid fa-bars"></i>
+        </button>
 
         <div class="nav-top">
             <a href="/home" class="nav-item">
