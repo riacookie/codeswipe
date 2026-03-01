@@ -24,7 +24,11 @@ body {
     justify-content: space-between;
     padding: 30px 0;
     position: fixed;
+    left: 0;
+    top: 0;
     height: 100vh;
+    z-index: 200;
+    transition: left 0.3s ease;
 }
 
 .nav-top {
@@ -210,4 +214,73 @@ body {
 .add-project-btn:hover {
     transform: translateY(-3px);
     box-shadow: 0 15px 35px rgba(255, 75, 145, 0.4);
+}
+
+/* ===== SIDEBAR TOGGLE BUTTON ===== */
+
+.sidebar-toggle {
+    display: none;
+    position: fixed;
+    top: 16px;
+    left: 16px;
+    z-index: 300;
+    background: linear-gradient(135deg, #ff4b91, #ff8fb1);
+    border: none;
+    border-radius: 10px;
+    padding: 10px 13px;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(255,75,145,0.4);
+    transition: left 0.3s ease;
+}
+
+.sidebar.open .sidebar-toggle {
+    left: 100px;
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media (max-width: 900px) {
+    .sidebar {
+        left: -85px;
+        transition: left 0.3s ease;
+    }
+
+    .sidebar.open {
+        left: 0;
+    }
+
+    .sidebar-toggle {
+        display: block;
+    }
+
+    .logo {
+        position: fixed;
+        left: 60px;
+        right: auto;
+        top: 18px;
+        font-size: 20px;
+    }
+
+    .main {
+        margin-left: 0;
+        padding: 80px 30px 40px;
+    }
+}
+
+@media (max-width: 600px) {
+    .main {
+        padding: 80px 16px 40px;
+    }
+
+    .page-title {
+        font-size: 22px;
+        margin-bottom: 24px;
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
 }

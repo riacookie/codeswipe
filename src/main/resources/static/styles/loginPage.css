@@ -130,3 +130,25 @@ body::after {
     transform: scale(1.05);
     box-shadow: 0 15px 35px rgba(255, 75, 145, 0.5);
 }
+
+/* ===== RESPONSIVE ===== */
+
+@media (max-width: 480px) {
+    body {
+        padding: 20px;
+    }
+
+    .register-card {
+        width: 100%;
+        padding: 40px 24px;
+        border-radius: 20px;
+    }
+
+    .register-card h1 {
+        font-size: 22px;
+    }
+
+    .register-card p {
+        font-size: 14px;
+    }
+}

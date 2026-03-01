@@ -265,3 +265,136 @@ body {
   font-size: 36px;
   margin-bottom: 30px;
 }
+
+/* ===== RESPONSIVE ===== */
+
+/* Tablet (≤ 1024px) */
+@media (max-width: 1024px) {
+  .hero {
+    padding: 60px 40px;
+    gap: 40px;
+  }
+
+  .hero-left h1 {
+    font-size: 38px;
+  }
+
+  .terminal {
+    width: 100%;
+    max-width: 420px;
+  }
+
+  .mock-card {
+    width: 300px;
+  }
+
+  .code-bg,
+  .code-bg-right {
+    display: none;
+  }
+
+  .steps {
+    padding: 60px 30px;
+  }
+
+  .step-container {
+    gap: 20px;
+  }
+}
+
+/* Mobile (≤ 768px) */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 18px 24px;
+  }
+
+  .logo {
+    font-size: 22px;
+  }
+
+  .hero {
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 24px 60px;
+    text-align: center;
+  }
+
+  .hero-left h1 {
+    font-size: 30px;
+  }
+
+  .hero-left p {
+    font-size: 15px;
+  }
+
+  .hero-buttons {
+    display: flex;
+    justify-content: center;
+  }
+
+  .terminal {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .hero-right {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .mock-card {
+    width: 100%;
+    max-width: 340px;
+    transform: none;
+  }
+
+  .mock-card:hover {
+    transform: none;
+  }
+
+  .steps {
+    padding: 50px 20px;
+  }
+
+  .steps h2 {
+    font-size: 26px;
+    margin-bottom: 30px;
+  }
+
+  .step-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .step-card {
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .cta {
+    padding: 60px 20px;
+  }
+
+  .cta h2 {
+    font-size: 24px;
+  }
+}
+
+/* Small mobile (≤ 480px) */
+@media (max-width: 480px) {
+  .hero-left h1 {
+    font-size: 26px;
+  }
+
+  .btn-primary, .btn-reverse {
+    padding: 10px 22px;
+    font-size: 14px;
+  }
+
+  .terminal-body {
+    font-size: 12px;
+    padding: 14px;
+  }
+}
